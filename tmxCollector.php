@@ -20,6 +20,19 @@ if (file_exists($engFile)) {
   $engSentencesArray = breakDown2Sentences($engText);
   
   //Then we insert to SQL
+  $stmt = $tmx_db->prepare("INSERT INTO 'tmx' ( `direction`, `source` , `target`, `count` ) VALUES ( ?, ?, ?, ? ); ")
+  $stmt->bind_param("issi", $direction, $ruSentence, $engSentence, $count);
+  
+  $direction = 0;
+  $count = 1;
+  $i = 0;
+  
+  foreach ($ruSentenceArray as $ruSentence) {
+    $engSentence = $engSentencesArray[i];
+    $stmt->execute();
+    $i++;
+  }
+  
   
   //Then we form .tmx file out of SQL table
 }
