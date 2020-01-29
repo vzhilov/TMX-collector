@@ -18,6 +18,10 @@ if (file_exists($engFile)) {
   
   $ruSentencesArray = breakDown2Sentences($ruText);
   $engSentencesArray = breakDown2Sentences($engText);
+  
+  //Then we insert to SQL
+  
+  //Then we form .tmx file out of SQL table
 }
     
     
