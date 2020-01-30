@@ -20,16 +20,37 @@ if (file_exists($engFile)) {
   $engSentencesArray = breakDown2Sentences($engText);
   
   //Then we insert to SQL
-  $stmt = $tmx_db->prepare("INSERT INTO 'tmx' ( `direction`, `source` , `target`, `count` ) VALUES ( ?, ?, ?, ? ); ")
+  
+  
+  $stmtSelect = $tmx_db->prepare("SELECT id FROM 'tmx' where `source` = ?;")
+  $stmtSelect->bind_param("s", $ruSentence); 
+  
+  $stmtInsert = $tmx_db->prepare("INSERT INTO 'tmx' ( `direction`, `source` , `target`, `count` ) VALUES ( ?, ?, ?, ? );")
   $stmt->bind_param("issi", $direction, $ruSentence, $engSentence, $count);
+  
+  $stmtInsert = $tmx_db->prepare("UPDATE 'tmx' set `count` = `count`+1 WHERE id = ?;")
+  $stmtInsert->bind_param("i", $id);
+
   
   $direction = 0;
   $count = 1;
   $i = 0;
   
+  
+
+
   foreach ($ruSentenceArray as $ruSentence) {
     $engSentence = $engSentencesArray[i];
-    $stmt->execute();
+    
+    $stmSelect->execute();
+    $stmSelect->store_result();
+    if ($stmSelect->num_rows == 0) {
+      $stmtInsert->execute();
+    } else {
+      $row = $stmtSelect->fetch(); 
+      $id = $row['id'];
+      $stmUpdate->execute();
+    }
     $i++;
   }
   
