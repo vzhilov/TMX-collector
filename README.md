@@ -12,5 +12,4 @@ CREATE TABLE `tmdata` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 direction = 0 # ru->en
-
 direction = 1 # en->ru
