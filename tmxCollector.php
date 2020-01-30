@@ -4,7 +4,7 @@ $tmxDir = "/home/";
 
 $tmx_db = mysqli_connect('localhost', 'tmx', 'mypass', 'tmx');
 
-$ruFiles = glob($tmxDir.'*_RU.txt');
+$ruFiles = glob($tmxDir.'*_[rR][uU].[tT][xX][tT]');
 
 foreach ($ruFiles as $ruFile) {
 
