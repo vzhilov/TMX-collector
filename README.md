@@ -3,7 +3,7 @@ Translation Memory .TMX collection tool.  It analyzes Russian text against its t
 
 MySql table stucture:
 
-CREATE TABLE `tmdata` (
+CREATE TABLE `tmx` (
   `id` int(11) NOT NULL,
   `direction` int(11) NOT NULL,
   `source` longtext NOT NULL,
@@ -12,4 +12,5 @@ CREATE TABLE `tmdata` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 direction = 0 # ru->en
+
 direction = 1 # en->ru
