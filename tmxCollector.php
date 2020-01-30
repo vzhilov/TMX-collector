@@ -8,13 +8,13 @@ $ruFiles = glob($tmxDir.'*_RU.txt');
 
 foreach ($ruFiles as $ruFile) {
 
-	$engFile = substr($ruFile, -7)."_EN.txt";
-	if (file_exists($engFile)) {
+	$enFile = substr($ruFile, -7)."_EN.txt";
+	if (file_exists($enFile)) {
 	  $ruText=file_get_contents($ruFile);
-	  $engText = file_get_contents($engFile);
+	  $enText = file_get_contents($enFile);
 	  
 	  $ruSentencesArray = breakDown2Sentences($ruText);
-	  $engSentencesArray = breakDown2Sentences($engText);
+	  $enSentencesArray = breakDown2Sentences($enText);
 	  
 	  //Then we insert to SQL
 	  
@@ -23,7 +23,7 @@ foreach ($ruFiles as $ruFile) {
 	  $stmtSelect->bind_param("s", $ruSentence); 
 	  
 	  $stmtInsert = $tmx_db->prepare("INSERT INTO 'tmx' ( `direction`, `source` , `target`, `count` ) VALUES ( ?, ?, ?, ? );");
-	  $stmt->bind_param("issi", $direction, $ruSentence, $engSentence, $count);
+	  $stmt->bind_param("issi", $direction, $ruSentence, $enSentence, $count);
 	  
 	  $stmtInsert = $tmx_db->prepare("UPDATE 'tmx' set `count` = `count`+1 WHERE id = ?;");
 	  $stmtInsert->bind_param("i", $id);
@@ -37,7 +37,7 @@ foreach ($ruFiles as $ruFile) {
 
 
 	  foreach ($ruSentenceArray as $ruSentence) {
-		$engSentence = $engSentencesArray[i];
+		$enSentence = $enSentencesArray[i];
 		
 		$stmSelect->execute();
 		$stmSelect->store_result();
