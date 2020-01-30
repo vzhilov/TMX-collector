@@ -63,6 +63,7 @@ function breakDown2Sentences($fullText) {
   $fullTextUtf = mb_convert_encoding($fullText, 'UTF-8', mb_detect_encoding($fullText));
   $sentecesArray = array();
   $paragraphs = array_filter(explode("\n", $fullTextUtf));
+  //TODO: strip quores, check sentense end with !? etc
   foreach ($paragraphs as $paragraph) {
     if (strpos(".", $paragraph)) {
       $sentences = array_filter(explode(".", $paragraph));
